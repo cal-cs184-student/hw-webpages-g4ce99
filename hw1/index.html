@@ -52,16 +52,16 @@
 		
 		<h2>Task 1: Drawing Single-Color Triangles</h2>
 		<p>
-			First, we ensure that the winding order of the triangle vertices is counter-clockwise by ensuring: \[(p1-p0) × (p2-p1) >= 0\]
-			If the value is less than 0, the winding order is currently clockwise, so we swap p1 and p2 to ensure p0, p1, p2 have counter-clockwise winding order (this is important for the 3 line test later). 
+			First, we ensure that the winding order of the triangle vertices is counter-clockwise by ensuring: \[(p_1-p_0) × (p_2-p_1) >= 0\]
+			If the value is less than 0, the winding order is currently clockwise, so we swap \(p_1\) and \(p_2\) to ensure \(p_0, p_1, p_2\) have counter-clockwise winding order (this is important for the 3 line test later). 
 			Then, we find coordinates for the bounding box the triangle is in by finding the minimum and maximum x,y values among the 3 vertices of the current triangle. 
 			This ensures that our sampling algorithm only samples pixels within the current triangle's bounding box; hence our sampling algorithm is not worse in runtime than sampling every pixel in this box. 
 			Next we loop over all the pixels, going column by column, and for the center of each pixel, we use the 3 line test described by the following inequalities to check/fill in each pixel based on whether is in the triangle or not.
 			<br />
 			<br />Note: The perp function rotates a vector 90 degrees to the left in these equations
-			\[(pt - p0) ⋅ perp(p1 - p0) >= 0\]
-			\[(pt - p2) ⋅ perp(p0 - p2) >= 0\]
-			\[(pt - p1) ⋅ perp(p2 - p1) >= 0\]
+			\[(p_t - p_0) ⋅ perp(p_1 - p_0) >= 0\]
+			\[(p_t - p_2) ⋅ perp(p_0 - p_2) >= 0\]
+			\[(p_t - p_1) ⋅ perp(p_2 - p_1) >= 0\]
 			
 		</p>
 		<figure>
@@ -115,8 +115,8 @@
 		<p>
 			Barycentric coordinates are a way of representing points as a linear combination of the vertex coordinates of a triangle.
 			These coordinates (\(&#945, &#946, &#947\)) for a specific point are computed using the ratios of areas of the sub triangles formed by the 3 vertices and the point of interest to the area of full triangle.
-			Specifically, the equations we used to calculate these coordinates for a given point pt and the three vertices p0, p1, p2 in counter-clockwise winding order were: 
-			\[&#945 = \frac{(p1-pt) × (p2-pt)}{(p1-p0) × (p2-p0)}, \quad &#946 = \frac{(p2-pt) × (p0-pt)}{(p1-p0) × (p2-p0)}, \quad &#947 = 1 - &#945 - &#946\]
+			Specifically, the equations we used to calculate these coordinates for a given point \(p_t\) and the three vertices \(p_0, p_1, p_2\) in counter-clockwise winding order were: 
+			\[&#945 = \frac{(p_1-p_t) × (p_2-p_t)}{(p_1-p_0) × (p_2-p_0)}, \quad &#946 = \frac{(p_2-p_t) × (p_0-p_t)}{(p_1-p_0) × (p_2-p_0)}, \quad &#947 = 1 - &#945 - &#946\]
 			Additionally, these coordinates are extremely useful because they allow you to interpolate certain properties of the vertices like color throughout the triangle.
 			<br />
 			<br /> In the image below on the left, we can see this interpolation of color quite clearly. 
