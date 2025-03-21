@@ -59,7 +59,7 @@
 		For example, I implemented my ray-triangle intersection check using the Möller-Trumbore algorithm. 
 		This algorithm works by solving for the point where the equation for a ray equals the barycentric equation for describing points that lie on the plane containing the triangle. 
 		The closed form solution for this equation finds the intersection time t and 2 of the barycentric coordinates allowing for the intersection point to be calculated either by the intersection time or through barycentric interpolation. 
-		I also confirm that an intersection point is valid by ensuring both that the intersection primitive is in front of all prior primitives that intersected with this ray(i.e. The intersection time t is greater than the ray’s min_t and less than its max_t) and that the intersection point is within the triangle (all barycentric coordinates are greater than 0). <br />
+		I also confirm that an intersection point is valid by ensuring both that the intersection primitive is in front of all prior primitives that intersected with this ray(i.e. The intersection time t is greater than the ray’s min_t and less than its max_t) and that the intersection point is within the triangle (all barycentric coordinates are greater than or equal to 0). <br />
 		<br />
 
 		Here are some example of rendering scenes with normal based shading use my ray-scene implementation: <br />
